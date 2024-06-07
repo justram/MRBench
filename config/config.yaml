@@ -1,7 +1,10 @@
 tasks:
-  - dataset_name: cirr_task7_local
+  - dataset_name: mbeir_mscoco_task0
     type: retrieval
-
+  - dataset_name: mbeir_mscoco_task3
+    type: retrieval
+  - dataset_name: mbeir_cirr_task7
+    type: retrieval
 output_folder: 'output_folder'
 cache_folder: 'cache'
 batch_size: 32
