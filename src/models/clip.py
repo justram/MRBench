@@ -17,7 +17,7 @@ class CLIP(BaseModel):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
 
-    @torch.infernece_mode()
+    @torch.inference_mode()
     def encode(self, data, batch_size: int = 32, show_progress_bar: bool = True, convert_to_tensor: bool = True, **kwargs) -> Union[torch.Tensor, List[torch.Tensor]]:
         embeddings = []
         progress_bar = tqdm(range(0, len(data['id']), batch_size), desc='Encoding...', disable=not show_progress_bar)
