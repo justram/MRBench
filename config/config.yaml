@@ -1,0 +1,10 @@
+tasks:
+  - dataset_name: cirr_task7_local
+    type: retrieval
+
+output_folder: 'output_folder'
+cache_folder: 'cache'
+batch_size: 32
+model_args:
+  model_name_or_path: "openai/clip-vit-base-patch32"
+log_dir: 'logs'

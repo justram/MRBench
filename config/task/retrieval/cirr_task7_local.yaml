@@ -1,0 +1,11 @@
+name: 'cirr_task7'
+type: 'parquet'
+dataset_path: '/store/scratch/j587yang/project/mm_retriver_soup/datasets/mbeir_parquets/mbeir_cirr_task7'
+qrels_config: 'qrels'
+corpus_config: 'corpus'
+query_config: 'query'
+split: 'test'
+main_metrics: ['map', 'ndcg@10', 'hit_rate@1', 'hit_rate@5', 'hit_rate@10']
+distance_metrics: 'cos'
+topk: 1000
+callbacks: None
