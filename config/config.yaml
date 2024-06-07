@@ -5,6 +5,30 @@ tasks:
     type: retrieval
   - dataset_name: mbeir_cirr_task7
     type: retrieval
+  - dataset_name: mbeir_fashion200k_task0
+    type: retrieval
+  - dataset_name: mbeir_fashion200k_task3
+    type: retrieval
+  - dataset_name: mbeir_fashioniq_task7
+    type: retrieval
+  - dataset_name: mbeir_webqa_task1
+    type: retrieval
+  - dataset_name: mbeir_webqa_task2
+    type: retrieval
+  - dataset_name: mbeir_edis_task2
+    type: retrieval
+  - dataset_name: mbeir_nights_task4
+    type: retrieval
+  - dataset_name: mbeir_oven_task6
+    type: retrieval
+  - dataset_name: mbeir_infoseek_task6
+    type: retrieval
+  - dataset_name: mbeir_infoseek_task8
+    type: retrieval
+  - dataset_name: mbeir_visualnews_task0
+    type: retrieval
+  - dataset_name: mbeir_visualnews_task3
+    type: retrieval
 output_folder: 'output_folder'
 cache_folder: 'cache'
 batch_size: 32
