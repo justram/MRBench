@@ -1,6 +1,6 @@
-name: 'mbeir_mscoco_task'
+name: 'mbeir_mscoco_task0'
 type: 'hgf'
-dataset_path: 'MRBench/mbeir_mscoco_task'
+dataset_path: 'MRBench/mbeir_mscoco_task0'
 qrels_config: 'qrels'
 corpus_config: 'corpus'
 query_config: 'query'
