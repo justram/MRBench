@@ -1,0 +1,11 @@
+name: 'mbeir_mscoco_task3'
+type: 'hgf'
+dataset_path: 'MRBench/mbeir_mscoco_task3'
+qrels_config: 'qrels'
+corpus_config: 'corpus'
+query_config: 'query'
+split: 'test'
+main_metrics: ['map', 'ndcg@10', 'hit_rate@1', 'hit_rate@5', 'hit_rate@10']
+distance_metrics: 'cos'
+topk: 1000
+callbacks: None

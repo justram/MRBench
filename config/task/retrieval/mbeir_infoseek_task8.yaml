@@ -1,6 +1,6 @@
-name: 'cirr_task7'
+name: 'mbeir_infoseek_task8'
 type: 'hgf'
-dataset_path: 'justram/cirr_task7'
+dataset_path: 'MRBench/mbeir_infoseek_task8'
 qrels_config: 'qrels'
 corpus_config: 'corpus'
 query_config: 'query'
