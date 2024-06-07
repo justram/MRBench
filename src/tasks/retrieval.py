@@ -69,6 +69,7 @@ class RetrievalTaskManager(TaskManager):
             return_sorted=True
         )
 
+        self.logger.log('Running evaluation...')
         evaluator = RetrievalEvaluator(self.qrels, self.main_metrics)
         scores = evaluator.evaluate(results)
 
