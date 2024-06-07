@@ -1,22 +1,22 @@
 import torch
-from transformers import CLIPProcessor, CLIPModel
+from transformers import AutoModel, AutoProcessor
 from typing import List, Dict, Union
 from PIL import Image
 from src.models.base import BaseModel
 from tqdm.auto import tqdm
 
-class CLIP(BaseModel):
+class HgfModel(BaseModel):
+    '''Models compatible with CLIP
+    '''
     def __init__(self, model_args: Dict):
         super().__init__(model_args)
-        model_name = model_args.get('model_name_or_path', 'openai/clip-vit-base-patch32')
-        name = model_args.get('model_name_or_path', 'clip')
-        self.name = name.split('/')[-1]
-        self.model = CLIPModel.from_pretrained(model_name)
-        self.processor = CLIPProcessor.from_pretrained(model_name)
-        self.embedding_dim = self.model.config.projection_dim
+        self.name = model_args['model_name_or_path'].split('/')[-1]
+        self.model = AutoModel.from_pretrained(model_args['model_name_or_path'])
+        self.processor = AutoProcessor.from_pretrained(model_args['model_name_or_path'])
+        self.embedding_dim = self.model.config.projection_dim if hasattr(self.model.config, 'projection_dim') else self.model.config.text_config.hidden_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
-        self.prompt = 'a picture of '
+        self.prompt = 'A picture of'
 
     @torch.inference_mode()
     def encode(self, data, batch_size: int = 32, show_progress_bar: bool = True, convert_to_tensor: bool = True, **kwargs) -> Union[torch.Tensor, List[torch.Tensor]]:
@@ -32,7 +32,7 @@ class CLIP(BaseModel):
             has_images = any(img is not None for img in images)
 
             if any(texts):
-                texts = [self.prompt + t for t in texts]
+                texts = [f'{self.prompt} {t}' for t in texts]
                 text_inputs = self.processor(text=texts, return_tensors="pt", padding=True, truncation=True).to(self.device)
             else:
                 text_inputs = None

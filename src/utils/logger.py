@@ -9,7 +9,7 @@ class Logger:
 
     def log(self, message: str):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        log_message = f"{timestamp} - {message}\n"
+        log_message = f"{timestamp} - {message}"
         with open(self.log_file, "a") as f:
             f.write(log_message)
         print(log_message)

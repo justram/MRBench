@@ -140,11 +140,10 @@ class ExactSearch:
             query_id = query_ids[query_start_idx + query_itr]
             for sub_corpus_id, score in zip(top_k_idx[query_itr], top_k_values[query_itr]):
                 corpus_id = corpus_ids[corpus_start_idx + sub_corpus_id]
-                if corpus_id != query_id:
-                    if len(result_heaps[query_id]) < top_k:
-                        heapq.heappush(result_heaps[query_id], (score, corpus_id))
-                    else:
-                        heapq.heappushpop(result_heaps[query_id], (score, corpus_id))
+                if len(result_heaps[query_id]) < top_k:
+                    heapq.heappush(result_heaps[query_id], (score, corpus_id))
+                else:
+                    heapq.heappushpop(result_heaps[query_id], (score, corpus_id))
 
     def finalize_results(self, result_heaps):
         for qid in result_heaps:
