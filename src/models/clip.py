@@ -45,7 +45,7 @@ class CLIP(BaseModel):
 
             embeddings.append(batch_embeddings)
 
-        embeddings = torch.cat(embeddings, dim=0)
+        embeddings = torch.cat(embeddings, dim=0).detach().cpu()
         return embeddings if convert_to_tensor else embeddings.numpy()
 
     def encode_queries(self, queries, batch_size: int = 32, show_progress_bar: bool = True, convert_to_tensor: bool = True, **kwargs) -> Union[torch.Tensor, List[torch.Tensor]]:
