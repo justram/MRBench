@@ -77,6 +77,6 @@ class RetrievalTaskManager(TaskManager):
         with open(output_file, "w") as f:
             json.dump(scores, f, indent=4)
             
-        self.logger.log(scores, pretty=True)
+        self.logger.log(scores)
         self.logger.log(f"Evaluation for task '{self.name}' saved to {output_file}")
 
