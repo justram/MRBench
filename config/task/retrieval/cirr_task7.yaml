@@ -1,4 +1,5 @@
 name: 'cirr_task7'
+type: 'hgf'
 dataset_path: 'justram/cirr_task7'
 qrels_config: 'qrels'
 corpus_config: 'corpus'
