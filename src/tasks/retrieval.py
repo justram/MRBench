@@ -1,5 +1,6 @@
 import os
 import json
+from collections import defaultdict
 from pathlib import Path
 from datasets import load_dataset
 from typing import Dict, Callable, List
@@ -32,7 +33,10 @@ class RetrievalTaskManager(TaskManager):
         if self.dataset_type == 'parquet':
             data_files = [str(p) for p in Path(self.dataset_path).glob(f'{self.qrels_config}*.parquet')]
             dataset = load_dataset('parquet', data_files=sorted(data_files), split='train')
-        return {str(row['query-id']): {str(row['corpus-id']): row['score']} for row in dataset}
+        qrels = defaultdict(dict)
+        for row in dataset:
+            qrels[str(row['query-id'])][str(row['corpus-id'])] = int(row['score'])
+        return dict(qrels)
 
     def load_corpus(self) -> List[Dict[str, str]]:
         if self.dataset_type == 'hgf':
