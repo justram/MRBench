@@ -6,5 +6,6 @@ output_folder: 'output_folder'
 cache_folder: 'cache'
 batch_size: 32
 model_args:
-  model_name_or_path: "openai/clip-vit-base-patch32"
+  model_name_or_path: "openai/clip-vit-large-patch14"
+  model_type: "clip"
 log_dir: 'logs'

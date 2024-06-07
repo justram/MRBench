@@ -5,8 +5,9 @@ from PIL import Image
 from src.models.base import BaseModel
 from tqdm.auto import tqdm
 
-class HgfModel(BaseModel):
-    '''Models compatible with CLIP
+class CLIP(BaseModel):
+    '''
+    CLIP and Models compatible with CLIP
     '''
     def __init__(self, model_args: Dict):
         super().__init__(model_args)

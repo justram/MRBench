@@ -32,8 +32,8 @@ class EVAL:
 
     def load_model(self, model_args):
         # Load and return the model based on model_args
-        if "clip" in model_args.model_name_or_path:
-            from src.models.clip import CLIP
+        if model_args.model_type == 'clip':
+            from src.models.hgf import CLIP
             return CLIP(model_args)
         raise ValueError(f"Unknown model: {model_args.model_name_or_path}")
 
