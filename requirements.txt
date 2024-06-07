@@ -1,0 +1,6 @@
+torch
+torchaudio 
+torchvision 
+datasets 
+ranx 
+hydra-core
