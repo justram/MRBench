@@ -16,6 +16,7 @@ class CLIP(BaseModel):
         self.embedding_dim = self.model.config.projection_dim
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
+        self.prompt = 'a picture of '
 
     @torch.inference_mode()
     def encode(self, data, batch_size: int = 32, show_progress_bar: bool = True, convert_to_tensor: bool = True, **kwargs) -> Union[torch.Tensor, List[torch.Tensor]]:
@@ -30,7 +31,12 @@ class CLIP(BaseModel):
             images = batch.get('image', None)
             has_images = any(img is not None for img in images)
 
-            text_inputs = self.processor(text=texts, return_tensors="pt", padding=True, truncation=True).to(self.device) if any(texts) else None
+            if any(texts):
+                texts = [self.prompt + t for t in texts]
+                text_inputs = self.processor(text=texts, return_tensors="pt", padding=True, truncation=True).to(self.device)
+            else:
+                text_inputs = None
+
             image_inputs = self.processor(images=[img for img in images if img is not None], return_tensors="pt").to(self.device) if has_images else None
 
             text_embeddings = self.model.get_text_features(**text_inputs) if text_inputs else None
